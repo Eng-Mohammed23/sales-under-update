@@ -1,0 +1,205 @@
+﻿@using Sales.web.Core.Consts
+@model AddItemViewModel
+@{
+    ViewData["Title"] = "Add Item";
+}
+
+<form asp-action="GetItemDetails"
+      data-ajax-method="post"
+      data-ajax="true"
+      data-ajax-success="onAddCopySuccess"
+      id="addForm">
+
+    <!--begin::Details-->
+    <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
+
+        <!--begin::Wrapper-->
+        <div class="flex-grow-1">
+            <div class="d-flex align-items-center mb-1">
+                <a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bold me-3"></a>
+                @* <span class="badge badge-light-success me-auto">In Progress</span> *@
+            </div>
+            <!--end::Status-->
+            <!--begin::Head-->
+            @* <div class="d-flex justify-content-between align-items-start mb-2"> *@
+
+                <!--begin::Details-->
+                <div class="d-flex ">
+
+                    <!--begin::Description-->
+                    <div class="form-group ms-10 d-flex">
+                        <div class="">
+                            <label asp-for="SelectClientUp" class="custom-label">اسم العميل</label>
+                            <select class="form-select form-group from-control form-select-solid js-select2 large-input" data-placeholder="الاسم" asp-for="SelectClientUp" asp-items="@Model.Clients">
+                                <option value="كاش">كاش</option>
+                            </select>
+
+                        </div>
+                        <span asp-validation-for="SelectClientUp" class="text-danger d-block"></span>
+                        <a asp-controller="Clients" asp-action="Create">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
+                                <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5z" />
+                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1" />
+                            </svg>
+                        </a>
+
+
+                    </div>
+                    <div class="form-group ms-2 ">
+                    <div class="btn btn-outline-primary me-2 no-print" id="srtQuality">قطاعى</div>
+                        <label class="btn btn-outline-primary" id="account">حسابه 0</label>
+                    </div>
+
+
+                <div class="form-group no-print">
+                        <div class="dropdown">
+                            <button class="btn btn-light-warning btn-outline-warning dropdown-toggle" type="button" id="dropdownStore" data-bs-toggle="dropdown" aria-expanded="false">
+                                اختر المخزن
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownStore">
+                                <li><a class="dropdown-item btn-light-warning btn-outline-warning" href="#" id="store1">صاله العرض</a></li>
+                                <li><a class="dropdown-item btn-light-warning btn-outline-info" href="#" id="store2">مخزن 1</a></li>
+                                <li><a class="dropdown-item btn-light-warning btn-outline-danger" href="#" id="store3">مخزن 2</a></li>
+                            </ul>
+                        </div>
+                        @* <label for="storeSelect">اختر مخزن</label> *@
+                        @* <select class="form-select btn-light-warning btn-outline-warning" id="storeSelect">
+                        <option value="store1">صاله العرض</option>
+                        <option value="store2">مخزن 1</option>
+                        <option value="store3">مخزن 2</option>
+                        </select> *@
+                    </div>
+                   
+                    @* اختار مكان البضاعه : *@
+                    @* <a class="btn btn-light-warning btn-outline-warning " id="store1">صاله العرض</a>
+                    <a class="btn btn-light-warning btn-outline-info" id="store2"> مخزن 1</a>
+                    <a class="btn btn-light-warning btn-outline-danger" id="store3">مخزن 2</a> *@
+                    <div class="d-flex justify-content-between">
+                        <div class="form-group ms-1">
+                            <div class="btn btn-outline-primary me-2" id="city">البلد</div>
+                            <label class="btn btn-outline-primary" id="teleph">التليفون </label>
+                        </div>
+                        <!--end::Description-->
+                        <button class="btn btn-primary no-print">
+                            <span class="indicator-label">
+                                اضافه
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0" />
+                                <path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z" />
+                                <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5" />
+                            </svg>
+                        </button>
+                        @* <div class="d-flex align-items-center me-1">
+                            this
+                        </div> *@
+                    </div>
+                </div>
+                <!--end::Details-->
+
+            @* </div> *@
+            <!--end::Head-->
+            <!--begin::Info-->
+            <div class="d-flex no-print">
+
+                <div class="form-group ms-3 no-print">
+                    <div class="">
+                        <label asp-for="ItemId" class="custom-label">اسم الصنف</label>
+                        <select class="form-select form-group from-control form-select-solid js-select2 large-input" data-placeholder="اسم الصنف" asp-for="ItemId" asp-items="@Model.Items">
+                            <option value=""></option>
+                        </select>
+
+                    </div>
+                    <span asp-validation-for="ItemId" class="text-danger d-block"></span>
+                </div>
+                <div class="form-group ms-3 no-print @(!User.IsInRole(AppRoles.FirstSales)?"":"d-none")">
+
+                    <label asp-for="TheSourcePrice">السعر الاصلى</label>
+                    <input type="number" class="form-control custom-input" asp-for="TheSourcePrice" placeholder="السعر الاصلى" value="0">
+
+                </div>
+               @*  @if (!User.Identity.IsAuthenticated)
+                {
+                }  *@             
+                @* <a class="btn btn-light-primary btn-outline-light" id="Quantity3">جمله</a>
+                <a class="btn btn-light-primary btn-outline-light" id="Quantity2">نصف جمله</a>
+                <a class="btn btn-light-primary btn-outline-light" id="Quantity1">قطاعى</a> *@
+                <div class="ms-3 mt-4">
+                    <div class="form-group no-print">
+                        <div class="dropdown">
+                            <button class="btn btn-light-primary btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                اختر النوع
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="#" id="Quantity3">جمله</a></li>
+                                <li><a class="dropdown-item" href="#" id="Quantity2">نصف جمله</a></li>
+                                <li><a class="dropdown-item" href="#" id="Quantity1">قطاعى</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" asp-for="Title" />
+                <input type="hidden" asp-for="SortOfQuantity" />
+                <input type="hidden" asp-for="NumOfStore" />
+
+
+                <div class="form-group ms-3 no-print">
+                    <label asp-for="ThePrice">السعر</label>
+                    <input type="number" class="form-control custom-input" asp-for="ThePrice" placeholder="السعر">
+                </div>
+                <div class="form-group ms-3 no-print">
+                    <label asp-for="Number">العدد</label>
+                    <input type="number" class="form-control custom-input" asp-for="Number" placeholder="العدد">
+                </div>
+                <div class="form-group no-print">
+                    <label asp-for="TotalOfPrice">المبلغ الكلى</label>
+                    <input type="number" class="form-control custom-input" asp-for="TotalOfPrice" placeholder="المبلغ الكلى">
+                </div>
+                <div class="form-group">
+                    <input type="hidden"  id="finish">
+                </div>
+
+                <!--begin:Action-->
+                @* <div class="d-flex align-items-center mt-2 me-5">
+                <button class="btn btn-primary">
+                <span class="indicator-label">
+                اضافه
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0" />
+                <path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z" />
+                <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5" />
+                </svg>
+                </button>
+                </div> *@
+                <!--end:Action-->
+
+
+            </div>
+            <!--end::Info-->
+        </div>
+
+        <!--end::Wrapper-->
+
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,176 @@
+﻿@using Sales.web.Core.Consts
+@inject IViewLocalizer localizer
+
+@model OrderFormViewModel
+@{
+    ViewData["Title"] = "NewForm";
+    //Layout = "_Layout";
+}
+<a class="navbar-brand btn-outline-primary no-print" asp-area="" asp-controller="Home" asp-action="Index">الصفحه الرئيسيه</a>
+<div class="card-primary border-primary" id="DelegateForm">
+    <div class="card-header justify-content-between is-print">
+        <!--begin::Card title-->
+        <div class="card-title me-4">
+            <h2>عطارة الحرم</h2>
+            <h3>الاستاذ محمود العطار 01140776564</h3>
+        </div>
+        <!--end::Card title-->
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar me-3">
+            
+            <a asp-controller="Home" asp-action="Index" >
+                <img alt="Logo" src="~/images/photo_5920030591657559557_m.jpg" class="h-20px h-lg-20px me-6" style="height: 110px; width: auto;" />
+            </a>
+        </div>
+        <!--end::Card toolbar-->
+    </div>
+
+
+
+    <div class="card mb-10 pb-2">
+        <div class="card-body py-9 ">
+
+            <partial name="_AddItem" model="new AddItemViewModel{Items = Model.Items,Clients = Model.Clients}" />
+        </div>
+        <div class="separator no-print"></div>
+        <form asp-controller="Orders" asp-action="Create">
+
+            @* for test print  *@
+            <div id="divContents" class="span-flex ">
+                <div class="card d-none table-cell" id="no-invoice">
+                <!--begin::Card header-->
+                <div class="card-header border-0 d-flex align-items-center justify-content-between text-danger">
+                    <!--begin::Card title-->
+                    <div class="card-title ms-2">
+                        <h2>الفاتوره</h2>
+                    </div>
+                    <!--end::Card title-->
+
+@*                     <div class="d-flex align-items-center justify-content-between ">
+ *@                     <div class="form-group me-2 text-danger">
+                            <label asp-for="Total" class="me-2">الاجمالى</label>
+                            <input type="number" class="form-control" asp-for="Total" placeholder="الاجمالى">
+                        </div>
+                        <div class="form-group me-2">
+                        <label asp-for="Discount" class="me-2">الخصم</label>
+                        <input type="number" value="0" class="form-control" asp-for="Discount" placeholder="الخصم" value="">
+                        </div>
+                        <div class="form-group me-2">
+                        <label asp-for="AfterDiscount" class="me-2">بعد الخصم</label>
+                        <input type="number" class="form-control" asp-for="AfterDiscount" placeholder="بعد الخصم" value="">
+                        </div>
+                        <div class="form-group me-2">
+                            <label asp-for="Payment" class="me-2">الدفع</label>
+                            <input type="number" class="form-control" asp-for="Payment" placeholder="الدفع" value="">
+                        </div>
+                        <div class="form-group me-2">
+                            <label asp-for="TheRest" class="me-2">الباقى</label>
+                            <input type="number" class="form-control" asp-for="TheRest" placeholder="الباقى">
+                        </div>
+
+                        <input type="hidden" asp-for="ToStore" />
+@*                     </div>
+ *@
+                    <!--begin::Card toolbar-->
+                    <button type="button" class="btn btn-outline-primary me-2 no-print" onclick="window.print();
+">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h2z" />
+                            <path d="M8 4a4 4 0 1 0-4 4 4 4 0 0 0 4-4z" />
+                            <path d="M2 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5.5A1.5 1.5 0 0 1 14.5 15h-9a1.5 1.5 0 0 1-1.5-1.5v-5.5zm10 4.5a.5.5 0 0 1 .5-.5h-2a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z" />
+                        </svg> طباعه
+                    </button>
+                    <button type="submit" class="btn btn-outline-primary me-2 no-print">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                            <path d="M4.646 10.146a.5.5 0 0 1 .708 0l3-3a.5.5 0 0 1 .708.708L5.707 11.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0z" />
+                        </svg> حفظ
+                    </button>
+                    @if (!User.IsInRole(AppRoles.FirstSales))
+                    {
+                        <button type="submit" class="btn btn-primary" id="Store">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 .5-.5z" />
+                            </svg> اضافه الى المخزن
+                        </button>
+                    }
+                    
+                    <!--end::Card toolbar-->
+                </div>
+
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body py-0">
+
+                    <!--begin::Table wrapper-->
+                    <div class="">
+                        <div class="container p-0 ">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" asp-for="ClientId">
+
+                            <div class="row d-flex text-danger">
+                                <div class="col-12 text-center">
+                                    <div class="row bg-primary py-2 rounded">
+                                        <div class="col-4">العنصر</div>
+                                        <div class="col-2">نوع الكميه</div>
+                                        <div class="col-2">السعر</div>
+                                        <div class="col-2">العدد</div>
+                                        <div class="col-2">الحساب</div>
+                                        @* <div class="col-2"></div> *@
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="CopiesForm" class="card-primary border-primary text-danger">
+                                @*Wil be render here*@
+                            </div>
+                                   @* <div class="mt-10 py-4 d-flex">
+                            <div class="form-group col-2 ">
+                            <label asp-for="Total">الاجمالى</label>
+                            <input type="number" class="form-control" asp-for="Total" placeholder="الاجمالى">
+                            </div>
+                            <div class="form-group col-2 me-3">
+                            <label asp-for="Payment">الدفع</label>
+                            <input type="number" class="form-control" asp-for="Payment" placeholder="الدفع">
+                            </div>
+
+                            <div class="form-group col-2 me-3 ">
+                            <label asp-for="TheRest"> الباقى</label>
+                            <input type="number" class="form-control" asp-for="TheRest" placeholder=" الباقى">
+                            </div>
+                            <input type="hidden" asp-for="ToStore" />
+                            </div> *@
+
+
+                        </div>
+
+                        <!--end::Table-->
+                    </div>
+                    <!--end::Table wrapper-->
+                </div>
+                <!--end::Card body-->
+                <div class="p-2">المهندس محمد للسستم:01158085361</div>
+               <button id="btnPrint" class="btn btn-primary">Print</button>
+            </div>
+            </div>
+        </form>
+
+    </div>
+    
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/invoice-js.js" asp-append-version="true"></script>
+    <script src="~/js/PrintFile.js" asp-append-version="true"></script>
+   
+}
+

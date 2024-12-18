@@ -1,0 +1,52 @@
+﻿@model ClientFormViewModel
+@{
+    ViewData["Title"] = "Create Client";
+}
+
+<div class="card col-8 m-auto border-primary">
+    <div class="card-header">
+        اضافة/تعديل عميل 
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="@(Model?.Id > 0?"Edit":"Create")" asp-controller="Clients">
+            @if(Model?.Id > 0)
+            {
+                <input type="hidden" asp-for="Id">
+            }
+
+            <div class="form-group">
+                <label asp-for="FullName">الاسم كامل</label>
+                <input type="text" class="form-control custom-input" asp-for="FullName" placeholder="الاسم">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber">التليفون</label>
+                <input type="text" class="form-control custom-input" asp-for="PhoneNumber" placeholder="التليفون">
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">البلد</label>
+                <input type="text" class="form-control custom-input" asp-for="Email" placeholder="البلد">
+            </div>
+            <div class="form-group">
+                <label asp-for="SortOfQuality">جمله / قطاعى</label>
+                <input type="text" class="form-control custom-input" asp-for="SortOfQuality" placeholder="جمله / قطاعى">
+            </div>
+            <div class="form-group">
+                <label asp-for="Account">حسابه</label>
+                <input type="number" class="form-control custom-input" asp-for="Account" placeholder="الحساب ">
+            </div>
+            <button type="submit" class="btn btn-primary mt-5">حفظ</button>
+        </form>
+    </div>
+    <div class="card-footer text-muted">
+        & 2024
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+ *@

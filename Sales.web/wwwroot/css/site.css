@@ -1,0 +1,167 @@
+﻿html {
+  font-size: 14px;
+
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.mb-7{
+    margin-top:15px;
+}
+.me-10{
+    margin-bottom:30px;
+}
+
+.large-input {
+    width: 300px;
+    height: 0px;
+}
+.rd-border {
+    padding: 0px;
+    border-radius: 45px;
+}
+.bold-text {
+    font-weight: bold;
+    font-size: 20px;
+}
+/*.large-input {
+    width: 300px;*/ /* تكبير عرض الـ input */
+    /*font-size: 20px;*/ /* تكبير حجم النص داخل الـ input */
+    /*padding: 12px;*/ /* إضافة بعض المساحة الداخلية */
+/*}*/
+.custom-select {
+    height: 50px; /* تغيير ارتفاع الحقل */
+    font-size: 18px; /* تغيير حجم النص */
+}
+
+/* لتغيير حجم ولون النص داخل الحقل */
+.select2-container .select2-selection--single {
+    height: 38px; /* لتغيير ارتفاع الحقل */
+    font-size: 18px; /* لتغيير حجم النص داخل الحقل */
+    color: #333; /* لتغيير لون النص داخل الحقل */
+    background-color: #f8f9fa; /* لون الخلفية */
+    padding:0px;
+    margin:0px;
+}
+
+/* لتغيير لون النص داخل الحقل عند تحديده */
+.select2-container--classic .select2-selection--single .select2-selection__rendered {
+    line-height: 50px; /* لضبط النص داخل الحقل */
+    font-size: 20px; /* حجم النص */
+    color: #007bff; /* لون النص */
+}
+
+/* لتغيير حجم ولون النص داخل القائمة المنسدلة */
+.select2-container .select2-results__option {
+    font-size: 20px; /* حجم النص داخل القائمة المنسدلة */
+    color: #555; /* لون النص داخل القائمة المنسدلة */
+}
+
+/* لتغيير حجم ولون النص للـ Label */
+label {
+    font-size: 20px; /* حجم النص للـ Label */
+    /*color: #007bff;*/ /* لون النص للـ Label */
+    font-weight: bold; /* نمط الخط */
+}
+
+.custom-input {
+   
+    font-size: 25px; /* تغيير حجم النص داخل الحقل */
+    padding:0px;
+    padding-right: 5px; /* لضبط المسافة داخل الحقل */
+   /* border: 1px solid #ccc; *//* إضافة حدود للحقل */
+    border-radius: 5px; /* لتدوير زوايا الحقل */
+}
+.scroll-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+    .scroll-icon:hover {
+        background-color: #0056b3;
+    }
+.br-btm{
+    border-bottom:1px solid blue;
+}
+.is-print{
+    display: none;
+}
+
+
+/* To print Invoices*/
+@media print {
+    /* ????? ????? ????? ?? ??????? */
+    .no-print
+    {
+        display: none;
+    }
+
+    /* ????? ????? ?????? ??????? */
+    /*body {
+        font-size: 12pt;
+        margin: 20px;
+    }*/
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 2px solid black;
+        color: #000000; /* اللون الأسود بالكامل */
+        font-weight: bold; /* جعل النص عريضًا لتعزيز الوضوح */
+    }
+    .is-print{
+        display:flex;
+    }
+    /*.text-dark {
+        color: #000000;*/ /* اللون الأسود بالكامل */
+        /*font-weight: bold;*/ /* جعل النص عريضًا لتعزيز الوضوح */
+    /*}*/
+    body {
+        font-size: 12pt;
+        margin: 20px;
+        color: #000000; /* استخدام لون أسود نقي للنصوص */
+        background-color: #ffffff; /* التأكد من أن الخلفية بيضاء */
+    }
+
+    .header, .footer, .table-header, .table-cell {
+        color: #000000; /* استخدام ألوان داكنة للخطوط */
+        font-weight: bold; /* جعل الخطوط عريضة لتحسين الوضوح */
+    }
+
+    /* إذا كنت تستخدم خلفية رمادية، يمكنك إزالتها عند الطباعة */
+    .background-gray {
+        background-color: transparent;
+    }
+    .no-shadow {
+        text-shadow: none;
+        box-shadow: none;
+    }
+}

@@ -1,0 +1,174 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sales.web</title>
+    @* <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" /> *@
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="~/lib/print-js/print.min.css" rel="stylesheet" />
+    @await RenderSectionAsync("Styles", required: false)
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   
+    @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+    {
+       
+    }
+    <link rel="stylesheet" href="~/Sales.web.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #343a40; /* Dark background */
+            color: #fff; /* White text */
+            font-family: 'Arial', sans-serif;
+            margin:0;
+        }
+
+        .navbar {
+            background-color: #6f727d; /* Darker shade for navbar */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            color: #fff; /* White links */
+        }
+
+            .navbar-nav .nav-item .nav-link:hover {
+                color: #ffc107; /* Yellow on hover */
+            }
+
+        .container {
+            padding-top: 0px; /* Space for navbar */
+        }
+
+        .title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00bfff; /* Cyan for the title */
+            text-shadow: 2px 2px 5px #000; /* Subtle text shadow */
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="no-print">
+
+        <nav id="headd" class="navbar navbar-expand-lg navbar-dark  navbar-toggleable-sm border-bottom box-shadow navbar-expand-lg bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Clients" asp-action="ShowAllAccounts"> الحسابات</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Clients" asp-action="CreateAccount"> اضافة حساب</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between d-flex">
+                    <ul class="navbar-nav flex-grow-1">
+                        
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Create" id="noHeader">اضافه فاتوره</a>
+                        </li>
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link text-dark" asp-controller="Orders" asp-action="Index">الفواتير</a>
+                        </li>
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="CreateItem">اضافه صنف</a>
+                        </li>
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="ShowItems">الاصناف</a>
+                        </li>
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Create">اضافه عميل</a>
+                        </li>
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="ShowAllClients">العملاء</a>
+                        </li>
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link " asp-area="" asp-controller="Orders" asp-action="ShowItemsInStore1">صالة العرض</a>
+                        </li>
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link " asp-area="" asp-controller="Orders" asp-action="ShowItemsInStore3">المخزن 1</a>
+                        </li>
+                        <li class="nav-item rd-border btn-outline-dark bold-text me-2">
+                            <a class="nav-link " asp-area="" asp-controller="Orders" asp-action="ShowItemsInStore3">المخزن 2</a>
+                        </li>
+                        
+
+                        @* 
+                        <a class="menu-link" asp-controller="Orders" asp-action="CreateItem" active-when="Search">
+                            <span class="menu-icon">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor" />
+                                        <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </span>
+                            <span class="menu-title">CreateItem</span>
+                        </a>
+                        
+                        <div>
+                            <partial name="_SelectLanguagePartial" />
+                        </div>*@
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+        @*This is new*@
+
+        <!--begin:: no script-->
+        <noscript>
+            <div class="position-fixed h-100 w-100 bg-white text-center pt-20" style="z-index: 30000000000;">
+                <h1 class="text-danger">Javascript is disabled</h1>
+                <p class="pt-3 text-muted">Please enable javascript and refresh the page</p>
+            </div>
+        </noscript>
+        <!--end:: no script-->
+        <!--begin:: page loader-->
+        @* <div class="page-loader">
+            <span class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </span>
+        </div> *@
+        <!--end:: page loader-->
+
+    </header>
+    <div class="container p-0">
+        <main role="main" class="p-0">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <button class="scroll-icon no-print" onclick="scrollToBottom()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="30" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
+            </svg>
+            @* <i class="fa fa-arrow-down"></i> *@
+        </button>
+        <div class="container no-print">
+           @*  >المهندس:محمد 01158085361
+        < *@<a asp-area="" asp-controller="Home" asp-action=""></a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/lib/print-js/print.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

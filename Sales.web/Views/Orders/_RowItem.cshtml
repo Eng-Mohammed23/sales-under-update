@@ -1,0 +1,31 @@
+﻿@model AddItemViewModel
+
+<input type="hidden" value="@Model.ItemId" class="js-item-id" />
+<input type="hidden" value="@Model.Title" class="js-copy" />
+<input type="hidden" value="@Model.SortOfQuantity" class="js-copy" />
+<input type="hidden" value="@Model.ThePrice" class="js-num" />
+<input type="hidden" value="@Model.Number" class="js-num" />
+<input type="hidden" value="@Model.TotalOfPrice" class="js-num" id="totPrice"/>
+
+<input type="hidden" value="@Model.TheSourcePrice" class="js-num" />
+<input type="hidden" value="@Model.NumOfStore" class="js-num" />
+
+
+<div class="separator separator-dashed my-1"></div>
+
+<div class="row br-btm">
+    <div class="col-12 pb-1 ">
+        <div class="row text-center">
+            
+            <div class="col-4">@Model.Title</div>
+            <div class="col-2 ">@Model.SortOfQuantity</div>
+            
+            <div class="col-2">@Model.ThePrice</div>
+            <div class="col-2">@Model.Number @Model.SortOfQuantity</div>
+            <div class="col-2">@Model.TotalOfPrice.ToString("F2") </div>
+            @* <div class="col-2">
+                <span class="badge bg-warning">Expiring</span>
+            </div> *@
+        </div>
+    </div>
+</div>

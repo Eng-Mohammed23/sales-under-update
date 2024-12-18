@@ -1,0 +1,120 @@
+﻿@model IEnumerable<OrderViewModel>
+@{
+    ViewData["Title"] = "View Orders";
+}
+@foreach(var order in Model)
+{
+
+<div class="card py-4 br-btm">
+    <!--begin::Card header-->
+    <div class="card-header border-0 d-flex justify-content-between">
+        <!--begin::Card title-->
+        <div class="card-title">
+            <h2>الفاتوره</h2>
+        </div>
+        <!--end::Card title-->
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar">
+                <button type="button" class="btn btn-outline-primary me-2" onclick="window.print()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                        <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h2z" />
+                        <path d="M8 4a4 4 0 1 0-4 4 4 4 0 0 0 4-4z" />
+                        <path d="M2 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5.5A1.5 1.5 0 0 1 14.5 15h-9a1.5 1.5 0 0 1-1.5-1.5v-5.5zm10 4.5a.5.5 0 0 1 .5-.5h-2a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z" />
+                    </svg> طباعه
+                </button>
+        </div>
+        <!--end::Card toolbar-->
+    </div>
+    <!--end::Card header-->
+    <!--begin::Card body-->
+    <div class="card-body py-0">
+
+        <!--begin::Table wrapper-->
+        <div class="">
+            <div class="container rounded">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            
+
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+                    @*  <div class="form-group col-4 mb-3 me-10 oldClient ">
+
+                    <label asp-for="ClientName">الاسم</label>
+                    <input type="text" class="form-control" asp-for="ClientName" placeholder="الاسم">
+                    <a class="btn badge rounded-pill bg-warning ms-10" id="hideClient">زبون قديم</a>
+                    </div> *@
+                <div class="pt-3 pe-2">الاسم :  @(order.Client != null ? order.Client.FullName : "كاش")</div>
+                <div class="p-2">التاريخ : @(order.CreatedOn)@* .ToString("dd - mm - ") *@</div>
+                    <div class="form-group col-3 mb-7">
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="row bg-primary py-3 rounded">
+                                <div class="col-4">العنصر</div>
+                                <div class="col-2">نوع الكميه</div>
+                                <div class="col-2">السعر</div>
+                                <div class="col-2">العدد</div>
+                                <div class="col-2">الحساب</div>
+                                @* <div class="col-2"></div> *@
+                            </div>
+                        </div>
+                    </div>
+                    <div id="CopiesForm">
+                        <div class="row">
+                            <div class="col-12 pb-3 ">
+                                <div class="row text-center">
+
+                                @foreach (var item in order.DetailsOfItem)
+                                {
+                                    <div class="row text-center m-auto">
+                                        <div class="col-4">@item.Title</div>
+                                        <div class="col-2">@item.SortOfQuantity</div>
+                                        <div class="col-2">@item.PriceOfItem</div>
+                                        <div class="col-2">@item.NumberOfQuantity</div>
+                                        <div class="col-2">@item.TotalOfPrice.ToString("F2")</div>
+                                        @* <div class="col-2">
+                                            <span class="badge bg-warning">Expiring</span>
+                                        </div> *@
+                                    </div>
+                                }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="separator separator-dashed my-4"></div>
+
+                <div class="card-header border-0 d-flex align-items-center justify-content-between">
+                    <div class="form-group me-2">
+                        الاجمالى :   @(order.Total)
+                       </div>
+                    <div class="form-group me-2">الخصم :  @(order.Discount)</div>
+                    <div class="form-group me-2">بعد الخصم :  @(order.AfterDiscount)</div>
+                    <div class="form-group me-2">الدفع :  @(order.Payment)</div>
+                    <div class="form-group me-2">الباقى :  @(order.TheRest)</div>
+
+                    
+                    <!--end::Card toolbar-->
+                </div>
+               @* 
+                    <div class="mt-10 py-4 d-block">
+                    <div class="form-group col-3 mb-7">الاجمالى :   @(order.Total)</div>
+                    <div class="form-group col-3 ms-3 mb-7">الدفع :  @(order.Payment)</div>
+
+                    <div class="form-group col-3 mb-7">الباقى :  @(order.TheRest)</div>
+                        
+                </div> *@
+               
+            </div>
+
+            <!--end::Table-->
+        </div>
+        <!--end::Table wrapper-->
+    </div> 
+    <!--end::Card body-->
+};

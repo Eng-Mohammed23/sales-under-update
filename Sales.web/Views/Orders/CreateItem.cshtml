@@ -1,0 +1,85 @@
+﻿@model ItemFormViewModel
+@{
+    ViewData["Title"] = "Create Item";
+}
+
+<div class="card col-12 border-primary">
+    <div class="card-header">
+        اضافة/تعديل صنف 
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="@(Model?.Id > 0?"EditItem": "CreateItem")" asp-asp-controller="Orders">
+            @if (Model?.Id > 0)
+            {
+                <input type="hidden" asp-for="Id">
+            }
+            <div class="d-flex flex-wrap">
+                <div class="form-group col-6 m-3">
+                    <label asp-for="Title">اسم الصنف</label>
+                    <input type="text" class="form-control custom-input" asp-for="Title" placeholder="الاسم">
+                </div>
+
+                <div class="form-group col-5 m-3">
+                    <label asp-for="TheSourcePrice">السعر الاصلى</label>
+                    <input type="number" class="form-control custom-input" asp-for="TheSourcePrice" placeholder="الاسم">
+                </div>
+                
+                
+                <div class="form-group col-4 ms-3 me-3">
+                    <label asp-for="Quantity1"> سعر القطاعى</label>
+                    <input type="number" class="form-control custom-input" asp-for="Quantity1" placeholder="السعر">
+                </div>
+                <div class="form-group col-4 ms-3">
+                    <label asp-for="Quantity2"> سعر نصف القطاعى</label>
+                    <input type="number" class="form-control custom-input" asp-for="Quantity2" placeholder="السعر">
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="Quantity3"> سعر الجمله</label>
+                    <input type="number" class="form-control custom-input" asp-for="Quantity3" placeholder="السعر">
+                </div>
+                <div class="form-group col-4 ms-3 me-3">
+                    <label asp-for="Store1"> صاله العرض </label>
+                    <input type="number" class="form-control custom-input" asp-for="Store1" placeholder="العدد">
+                </div>
+                <div class="form-group col-4 ms-3">
+                    <label asp-for="Store2"> المخزن 1</label>
+                    <input type="number" class="form-control custom-input" asp-for="Store2" placeholder="العدد">
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="Store3"> المخزن 2</label>
+                    <input type="number" class="form-control custom-input" asp-for="Store3" placeholder="العدد">
+                </div>
+                <div class="form-group col-4 ms-3 me-3">
+                    <label asp-for="SortOfQuantity1">تغيير كلمه قطاعى </label>
+                    <input type="text" class="form-control custom-input" asp-for="SortOfQuantity1" placeholder="الاسم">
+                </div>
+                <div class="form-group col-4 ms-3">
+                    <label asp-for="SortOfQuantity2"> تغيير كلمه نصف جمله  </label>
+                    <input type="text" class="form-control custom-input" asp-for="SortOfQuantity2" placeholder="الاسم">
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="SortOfQuantity3">تغيير كلمه جمله</label>
+                    <input type="text" class="form-control custom-input" asp-for="SortOfQuantity3" placeholder="الاسم">
+                </div>
+                <div class="form-group col-6 m-3">
+                    <label asp-for="NumQuantity2InQuantity3">عدد الكرتونه/ عدد الكيلو فى الشكاره</label>
+                    <input type="number" class="form-control custom-input" asp-for="NumQuantity2InQuantity3" placeholder="لعدد">
+                </div>
+                <div class="form-group col-5 m-3">
+                    <label asp-for="NumQuantity1InQuantity2">عدد القطاعى</label>
+                    <input type="number" class="form-control custom-input" asp-for="NumQuantity1InQuantity2" placeholder="العدد">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-2 me-4">حفظ</button>
+        </form>
+    </div>
+   
+</div>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+ *@

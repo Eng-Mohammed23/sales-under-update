@@ -1,0 +1,43 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "Create Client";
+}
+
+<div class="card col-8 m-auto border-primary">
+    <div class="card-header">
+        اضافه/تعديل الحساب
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="@(Model?.Id > 0?"EditAccount":"CreateAccount")" asp-controller="Clients">
+            @if (Model?.Id > 0)
+            {
+                <input type="hidden" asp-for="Id">
+            }
+
+            <div class="form-group">
+                <label asp-for="Title">اسم الحساب </label>
+                <input type="text" class="form-control custom-input" asp-for="Title" placeholder="اسم الحساب">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price">المبلغ</label>
+                <input type="text" class="form-control custom-input" asp-for="Price" placeholder="المبلغ">
+            </div>
+            <div class="form-group">
+                <label asp-for="Note">الملاحظه</label>
+                <input type="text" class="form-control custom-input" asp-for="Note" placeholder="الملاحظه">
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-5">حفظ</button>
+        </form>
+    </div>
+    <div class="card-footer text-muted">
+        
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
